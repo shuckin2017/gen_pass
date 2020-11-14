@@ -1,12 +1,15 @@
 const input = document.querySelector('input'),
+      lengthPass = document.querySelector('.input-length');
       genPass = document.querySelector('.genPass'),
       copyPass = document.querySelector('.copyPass');
 
-   
+lengthPass.value = 10;
+
 genPass.addEventListener('click', () => {
   genPass.classList.add('rotate');
   setTimeout(() => {
-    input.value = GeneratorPassword(8);
+
+    input.value = GeneratorPassword(+lengthPass.value);
     genPass.classList.remove('rotate');
   }, 400);
 });
@@ -18,7 +21,7 @@ copyPass.addEventListener('click', () => {
   }
 });
 
-const GeneratorPassword = (length = 8) => {
+const GeneratorPassword = (length = lengthPass.value) => {
   const charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%&?';
   let password = '';
 
@@ -29,4 +32,4 @@ const GeneratorPassword = (length = 8) => {
   return password;
 };
 
-input.value = GeneratorPassword(8);
+input.value = GeneratorPassword(lengthPass.value);
